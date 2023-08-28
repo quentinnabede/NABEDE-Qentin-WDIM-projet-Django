@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar-logo {
+            font-size: 24px;
+        }
+
+        .navbar-links {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-links li {
+            margin-right: 20px;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #222;
+            color: white;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: -250px; /* Start off screen */
+            transition: left 0.3s ease-in-out;
+        }
+
+        .sidebar.active {
+            left: 0; /* Slide in when active */
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sidebar-links {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-links a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">Dashboard</div>
+            <ul class="navbar-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="{% url 'admindash' %}">Dashboard</a></li>
+            <li><a href="{% url 'upload_project' %}">Chargement de projet</a></li>
+            <li><a href="{% url 'manage_projects' %}">Gestion des projets</a></li>
+            <li><a href="{% url 'logout' %}">Deconnexion</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <button id="toggleSidebar"><i>+</i></button>
+    </div>
+
+    <script>
+        // Toggle Sidebar
+        const toggleButton = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
